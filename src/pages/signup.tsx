@@ -1,31 +1,36 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { toast } from "react-toastify";
+import { registerUser } from "./api/api";
+import { LoginFormProps } from "@/types/type";
+import { useRouter } from "next/router";
 
-interface LoginFormProps{
-  username: string,
-  password: string,
-  passwordConfirm:string,
-  nickname:string,
-  bio: string,
-}
 export default function Signup() {
 
+  const router=useRouter();
   const {
     register,
     handleSubmit,
-    watch,
     getValues,
     formState: { errors },
   } = useForm<LoginFormProps>({ mode: 'onBlur' });
 
   //TODO:유효성 검사
-  const idRegex = /^[a-zA-Z0-9]{8}$/;
+  const idRegex = /^[a-zA-Z0-9]{8,}$/;
   const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#\$%\^&\*\(\)])[a-zA-Z\d!@#\$%\^&\*\(\)]{8,}$/;
 
   //TODO: 제출 시 실행
-  const onSubmit: SubmitHandler<LoginFormProps> = (form) => {
+  const onSubmit: SubmitHandler<LoginFormProps> = async (form) => {
     console.log(form);
+    try {
+      await registerUser(form); 
+      console.log("유저 등록 완료");
+      router.push("/")
+    } catch (error) {
+      toast.error("회원가입에 실패했습니다.");
+      console.error("유저 등록 실패:", error);
+    }
  }
 
   return <div className="flex flex-col items-center w-screen h-screen">
