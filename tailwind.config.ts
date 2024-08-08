@@ -56,6 +56,9 @@ const config: Config = {
         bg: {
           100: "#1e1e20",
         },
+        state: {
+          error: "#FF6577",
+        },
     },
   },
   plugins: [
