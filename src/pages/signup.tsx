@@ -16,22 +16,29 @@ export default function Signup() {
     formState: { errors },
   } = useForm<LoginFormProps>({ mode: 'onBlur' });
 
-  //TODO:유효성 검사
   const idRegex = /^[a-zA-Z0-9]{8,}$/;
   const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#\$%\^&\*\(\)])[a-zA-Z\d!@#\$%\^&\*\(\)]{8,}$/;
 
-  //TODO: 제출 시 실행
   const onSubmit: SubmitHandler<LoginFormProps> = async (form) => {
     console.log(form);
     try {
       await registerUser(form); 
       console.log("유저 등록 완료");
       router.push("/")
-    } catch (error) {
-      toast.error("회원가입에 실패했습니다.");
+    } catch (error:any) {
+      if (error.response && error.response.status === 400) {
+        toast.error("이미 존재하는 사용자 이름입니다.");
+      } else {
+        toast.error("회원가입에 실패했습니다.");
+      }
       console.error("유저 등록 실패:", error);
     }
  }
+
+ const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  event.preventDefault();
+  handleSubmit(onSubmit)();
+};
 
   return <div className="flex flex-col items-center w-screen h-screen">
   <Link href="/main">
@@ -52,9 +59,6 @@ export default function Signup() {
   {errors?.username?.type === 'pattern' && (
               <p className="text-state-error text-[13px] mt-[10px]">이메일 양식에 맞게 입력해주세요</p>
             )}
-    <div className="flex">
-    <button className="w-[100px] h-[30px] bg-gray-50 border rounded-[10px] mt-[10px] text-[14px]">중복확인</button>
-    </div>
   </label>
   <label className="flex flex-col mb-[30px]">비밀번호
     <input {...register('password',{required:true, pattern:passwordRegex})} placeholder="영문,숫자,특수기호 8자 이상 입력해주세요" className="w-[300px] h-[50px] bg-gray-100 rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
@@ -92,7 +96,7 @@ export default function Signup() {
               <p className="text-state-error text-[13px] mt-[10px]">소개를 입력해주세요</p>
             )}
   </label>
-  <button className="w-[300px] h-[50px] bg-black-400 text-white rounded-[10px] md:w-[500px] mt-[30px]">
+  <button type="button" onClick={handleButtonClick} className="w-[300px] h-[50px] bg-black-400 text-white rounded-[10px] md:w-[500px] mt-[30px]">
     SIGNUP
   </button>
   <div className="flex justify-center mt-[20px] mb-[50px]"><p className="mr-[8px] text-gray-500 text-[14px]">계정이 있으신가요?</p><Link href="/login"><p className="hover:text-blue-500 text-[14px]">로그인</p></Link></div>

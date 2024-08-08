@@ -25,7 +25,7 @@ export interface LoginUserRequest {
   
   // Login User Response Type
  export interface LoginUserResponse {
-    access_token: string;
+  access_token: string;
   }
 
 export interface LoginFormProps{
@@ -35,3 +35,8 @@ export interface LoginFormProps{
     nickname:string,
     bio: string,
   }
+
+export interface UserProfile{
+  username: string;
+  email: string;
+}

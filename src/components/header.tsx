@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ProfileDropdown from "./profileDropdown";
 
 export default function Header() {
   return (<div className="h-[100px] flex justify-between items-center border border-b-1 font-bold">
@@ -18,13 +19,14 @@ export default function Header() {
     <p className=" hover:text-gray-400 cursor-pointer">MY</p>
     </Link>
     </div>
-    <div className="flex mr-[50px] ">
+    <div className="flex items-center mr-[50px] ">
       <Link href="/login">
         <p className="mr-[20px]  hover:text-gray-400 cursor-pointer">Login</p>
         </Link>
         <Link href="/signup">
         <p className="mr-[20px]  hover:text-gray-400 cursor-pointer">Signup</p>
         </Link>
+    <ProfileDropdown/>
     </div>
     
   </div>)
