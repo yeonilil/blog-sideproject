@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { getPostById, likePost } from "./api/posts";
+import { getPostById, likePost, deletePost, patchPost } from "./api/posts";
 import { useEffect, useState } from "react";
 import { Post } from "@/types/type";
 import { toast } from "react-toastify";
@@ -38,6 +38,25 @@ export default function PostPage() {
     }
   };
 
+  const handleEdit = async () => {
+    //추가 필요
+  };
+
+  const handleDelete = async () => {
+    if (!id || typeof id !== "string") return;
+
+    if (confirm("이 포스트를 삭제하시겠습니까?")) {
+      try {
+        await deletePost(id);
+        toast.success("포스트가 성공적으로 삭제되었습니다.");
+        router.push("/");
+      } catch (error) {
+        toast.error("포스트 삭제에 실패했습니다.");
+        console.error("포스트 삭제 중 오류 발생:", error);
+      }
+    }
+  };
+
   useEffect(() => {
     if (id && typeof id === "string") {
       fetchPost(id);
@@ -45,7 +64,7 @@ export default function PostPage() {
   }, [id]);
 
   if (!post) {
-    return <div>Loading...</div>; // 데이터가 로드될 때까지 로딩 표시
+    return <div>Loading...</div>;
   }
 
   return (
@@ -53,6 +72,10 @@ export default function PostPage() {
       <Header />
       <div className="h-full bg-custom-gradient flex flex-col items-center pt-[100px]">
         <div className="h-screen bg-custom-gradient">
+          <div className="flex justify-end gap-[10px] text-[13px] text-white">
+            <button onClick={handleEdit}>수정</button>
+            <button onClick={handleDelete}>삭제</button>
+          </div>
           <div
             className="flex flex-col h-auto w-[400px] md:w-[600px] xl:w-[800px] h-[250px] my-[10px] rounded-[10px] py-[30px] px-[30px] bg-white"
             style={{ boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.08)" }}
