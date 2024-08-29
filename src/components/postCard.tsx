@@ -31,7 +31,11 @@ export default function PostCard({ data }: PostCardProps) {
         <p className="text-[15px] font-semibold">{data.author}</p>
         <div className="flex items-center">
           <Image
-            src="/assets/ic-heart.svg"
+            src={
+              data.isLikedByUser
+                ? "/assets/ic-heart-fill.svg"
+                : "/assets/ic-heart.svg"
+            }
             alt="댓글 아이콘"
             width={30}
             height={30}

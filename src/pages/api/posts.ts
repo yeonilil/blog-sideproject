@@ -1,5 +1,5 @@
 import { Post, PostFormProps } from "@/types/type";
-import { getRequest, postRequest } from "./axios";
+import { deleteRequest, getRequest, patchRequest, postRequest } from "./axios";
 
 export const writePost = async (
   postData: PostFormProps
@@ -12,9 +12,22 @@ export const getAllPosts = async (): Promise<Post[]> => {
   return getRequest<Post[]>("/posts");
 };
 
-// ID -> 게시물
+// 게시물 삭제
 export const getPostById = async (id: string): Promise<Post> => {
   return getRequest<Post>(`/posts/${id}`);
+};
+
+//게시물 수정
+export const patchPost = async (
+  id: string,
+  updateData: PostFormProps
+): Promise<PostFormProps> => {
+  return patchRequest<PostFormProps>(`/posts/${id}`, updateData);
+};
+
+// ID -> 게시물
+export const deletePost = async (id: string): Promise<Post> => {
+  return deleteRequest<Post>(`/posts/${id}`);
 };
 
 // 공감하기

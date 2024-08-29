@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Post } from "@/types/type";
 import { toast } from "react-toastify";
 import Image from "next/image";
-import { useFormattedDate } from "@/hooks/useFormatDate";
 import Header from "@/components/header";
 import CommentContainer from "@/components/commentContainer";
 
@@ -26,11 +25,14 @@ export default function PostPage() {
   };
 
   const handleLike = async () => {
-    if (!id || typeof id !== "string") return;
+    if (!id || typeof id !== "string" || !post) return;
 
     try {
       await likePost(id);
       setLiked(true);
+      setPost((prevPost) =>
+        prevPost ? { ...prevPost, likes: prevPost.likes + 1 } : prevPost
+      );
     } catch (error) {
       console.error("공감하기에 실패했습니다", error);
     }
@@ -75,7 +77,7 @@ export default function PostPage() {
                   src={
                     liked ? "/assets/ic-heart-fill.svg" : "/assets/ic-heart.svg"
                   }
-                  alt="댓글 아이콘"
+                  alt="공감 아이콘"
                   width={30}
                   height={30}
                   className="mr-[5px] cursor-pointer"
@@ -85,7 +87,7 @@ export default function PostPage() {
               </div>
             </div>
           </div>
-          <CommentContainer postId={""} />
+          <CommentContainer postId={id as string} />
         </div>
       </div>
     </>

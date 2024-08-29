@@ -13,10 +13,12 @@ export default function Home() {
   //전체 게시물
   return (
     <Wrapper>
-      <div className="flex flex-col items-center font-Pretendard h-full bg-custom-gradient">
-        <Header />
-        <PostCardContainer />
-        <FloatingButton />
+      <div className="h-full">
+        <div className="flex flex-col items-center font-Pretendard h-full bg-custom-gradient">
+          <Header />
+          <PostCardContainer />
+          <FloatingButton />
+        </div>
       </div>
     </Wrapper>
   );
