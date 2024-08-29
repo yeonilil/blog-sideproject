@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { loginUser } from "./api/api";
+import { loginUser } from "./api/auth";
 import { useRouter } from "next/router";
 
 export default function Login() {
@@ -31,7 +31,7 @@ export default function Login() {
   };
 
 
-  return <div className="flex flex-col items-center w-screen h-screen">
+  return <div className="flex flex-col items-center w-screen h-screen bg-custom-gradient">
     <Link href="/main">
      <Image
     src="../assets/logo.svg"
@@ -43,13 +43,13 @@ export default function Login() {
     </Link>
   <form className="flex flex-col">
     <label className="flex flex-col mb-[30px]">아이디
-    <input {...register("username",{required:true})}className="w-[300px] h-[50px] bg-gray-100 rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
+    <input {...register("username",{required:true})}className="w-[300px] h-[50px] bg-white rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
     {errors?.username?.type === 'required' && (
               <p className="text-state-error text-[13px] mt-[10px]">아이디를 입력해주세요</p>
             )}
     </label>
     <label className="flex flex-col">비밀번호
-      <input {...register("password",{required:true})}className="w-[300px] h-[50px] bg-gray-100 rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
+      <input {...register("password",{required:true})}className="w-[300px] h-[50px] bg-white rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
       {errors?.password?.type === 'required' && (
               <p className="text-state-error text-[13px] mt-[10px]">비밀번호를 입력해주세요</p>
             )}

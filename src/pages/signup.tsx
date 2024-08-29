@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { toast } from "react-toastify";
-import { registerUser } from "./api/api";
+import { registerUser } from "./api/auth";
 import { LoginFormProps } from "@/types/type";
 import { useRouter } from "next/router";
 
@@ -40,7 +40,7 @@ export default function Signup() {
   handleSubmit(onSubmit)();
 };
 
-  return <div className="flex flex-col items-center w-screen h-screen">
+  return <div className="flex flex-col items-center w-screen h-full bg-custom-gradient">
   <Link href="/main">
    <Image
   src="../assets/logo.svg"
@@ -52,7 +52,7 @@ export default function Signup() {
   </Link>
 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
   <label className="flex flex-col mb-[30px]">아이디
-  <input {...register('username',{required:true, pattern:idRegex})} placeholder="영문,숫자 8자 이상 입력해주세요" className="w-[300px] h-[50px] bg-gray-100 rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
+  <input {...register('username',{required:true, pattern:idRegex})} placeholder="영문,숫자 8자 이내로 입력해주세요" className="w-[300px] h-[50px] bg-white rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
   {errors?.username?.type === 'required' && (
               <p className="text-state-error text-[13px] mt-[10px]">이메일을 입력해주세요</p>
             )}
@@ -61,7 +61,7 @@ export default function Signup() {
             )}
   </label>
   <label className="flex flex-col mb-[30px]">비밀번호
-    <input {...register('password',{required:true, pattern:passwordRegex})} placeholder="영문,숫자,특수기호 8자 이상 입력해주세요" className="w-[300px] h-[50px] bg-gray-100 rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
+    <input {...register('password',{required:true, pattern:passwordRegex})} placeholder="영문,숫자,특수기호 8자 이상 입력해주세요" className="w-[300px] h-[50px] bg-white rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
     {errors?.password?.type === 'required' && (
               <p className="text-state-error text-[13px] mt-[10px]">비밀번호를 입력해주세요</p>
             )}
@@ -79,19 +79,19 @@ export default function Signup() {
           }
           },
       },
-       })} placeholder="영문,숫자,특수기호 8자 이상 입력해주세요" className="w-[300px] h-[50px] bg-gray-100 rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
+       })} placeholder="영문,숫자,특수기호 8자 이상 입력해주세요" className="w-[300px] h-[50px] bg-white rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
      {errors?.passwordConfirm && (
               <p className="text-state-error text-[13px] mt-[10px]">비밀번호가 일치하지 않습니다</p>
             )}  
   </label>
   <label className="flex flex-col mb-[30px]">닉네임
-    <input {...register('nickname',{required:true})} placeholder="최대 8자까지 입력 가능" className="w-[300px] h-[50px] bg-gray-100 rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
+    <input {...register('nickname',{required:true})} placeholder="최대 8자까지 입력 가능" className="w-[300px] h-[50px] bg-white rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
     {errors?.nickname?.type === 'required' && (
               <p className="text-state-error text-[13px] mt-[10px]">닉네임을 입력해주세요</p>
             )}
   </label>
   <label className="flex flex-col mb-[30px]">소개
-    <input {...register('bio',{required:true})} placeholder="소개를 작성해주세요." className="w-[300px] h-[50px] bg-gray-100 rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
+    <input {...register('bio',{required:true})} placeholder="소개를 작성해주세요." className="w-[300px] h-[50px] bg-white rounded-[10px] md:w-[500px] mt-[20px] pl-[20px]"/>
     {errors?.bio?.type === 'required' && (
               <p className="text-state-error text-[13px] mt-[10px]">소개를 입력해주세요</p>
             )}

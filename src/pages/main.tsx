@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getUserProfile } from './api/api';
+import { getUserProfile } from './api/auth';
 import { UserProfile } from '@/types/type';
 import Header from '@/components/header';
 

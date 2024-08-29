@@ -14,13 +14,11 @@ const config: Config = {
         lg: "1200px",
         // => @media (min-width: 1280px) { ... }
       },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(-20deg, #fbc2eb 0%, #a6c1ee 100%)',
+      },
       fontFamily: {
         pretendard: ["Pretendard", "sans-serif"],
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
         black: {
@@ -54,7 +52,8 @@ const config: Config = {
           950: "#1A212D",
         },
         bg: {
-          100: "#1e1e20",
+          100: "#f4f4f4",
+          200: "a6c1ee", //보라색 포인트 색상
         },
         state: {
           error: "#FF6577",
