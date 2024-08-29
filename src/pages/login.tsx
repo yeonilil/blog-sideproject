@@ -31,7 +31,7 @@ export default function Login() {
   };
 
 
-  return <div className="flex flex-col items-center w-screen h-screen bg-custom-gradient">
+  return <div className="flex flex-col items-center w-screen h-screen bg-custom-gradient pt-[100px]">
     <Link href="/main">
      <Image
     src="../assets/logo.svg"

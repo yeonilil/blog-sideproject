@@ -15,7 +15,7 @@ const config: Config = {
         // => @media (min-width: 1280px) { ... }
       },
       backgroundImage: {
-        'custom-gradient': 'linear-gradient(-20deg, #fbc2eb 0%, #a6c1ee 100%)',
+        'custom-gradient': 'linear-gradient(-20deg, #D2D2FF 0%, #AAB9FF	100%)',
       },
       fontFamily: {
         pretendard: ["Pretendard", "sans-serif"],
