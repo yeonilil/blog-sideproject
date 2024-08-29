@@ -4,7 +4,7 @@ import { UserProfile } from "@/types/type";
 import Header from "@/components/header";
 import Wrapper from "@/components/animation";
 
-export default function Main() {
+export default function Mypage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -30,16 +30,18 @@ export default function Main() {
     <>
       <Wrapper>
         <Header />
-        <div className="flex flex-col items-center w-screen h-screen">
-          <h1>메인페이지 피드, 목록</h1>
-          {profile && (
-            <div className="profile">
-              <h2>프로필 정보</h2>
-              <p>아이디: {profile.username}</p>
-              <p>이메일: {profile.email}</p>
-              {/* 필요한 다른 프로필 정보들 추가 */}
-            </div>
-          )}
+        <div className="h-full bg-custom-gradient flex flex-col items-center pt-[100px]">
+          <div className="h-screen bg-custom-gradient">
+            <h1>메인페이지 피드, 목록</h1>
+            {profile && (
+              <div className="profile">
+                <h2>프로필 정보</h2>
+                <p>아이디: {profile.username}</p>
+                <p>이메일: {profile.email}</p>
+                {/* 필요한 다른 프로필 정보들 추가 */}
+              </div>
+            )}
+          </div>
         </div>
       </Wrapper>
     </>

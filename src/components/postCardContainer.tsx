@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Post } from "@/types/type";
 import { getAllPosts } from "@/pages/api/posts";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 export default function PostCardContainer() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -27,7 +28,9 @@ export default function PostCardContainer() {
           <p className="text-bold text-white text-[20px]">ALL</p>
         </div>
         {posts.map((post) => (
-          <PostCard key={post.id} data={post} />
+          <Link key={post.id} href={`/${post.id}`}>
+            <PostCard key={post.id} data={post} />
+          </Link>
         ))}
       </div>
     </div>

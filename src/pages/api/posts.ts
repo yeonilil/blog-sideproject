@@ -16,3 +16,8 @@ export const getAllPosts = async (): Promise<Post[]> => {
 export const getPostById = async (id: string): Promise<Post> => {
   return getRequest<Post>(`/posts/${id}`);
 };
+
+// 공감하기
+export const likePost = async (id: string): Promise<void> => {
+  return postRequest<void>(`/posts/${id}/like`);
+};

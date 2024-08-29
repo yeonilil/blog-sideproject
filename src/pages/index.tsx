@@ -15,9 +15,7 @@ export default function Home() {
     <Wrapper>
       <div className="flex flex-col items-center font-Pretendard h-full bg-custom-gradient">
         <Header />
-        <Link href="/:id">
-          <PostCardContainer />
-        </Link>
+        <PostCardContainer />
         <FloatingButton />
       </div>
     </Wrapper>

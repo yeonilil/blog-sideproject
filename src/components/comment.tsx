@@ -1,13 +1,7 @@
-import { useFormattedDate } from "@/hooks/useFormatDate";
-import { Post } from "@/types/type";
 import Image from "next/image";
+import Link from "next/link";
 
-interface PostCardProps {
-  data: Post;
-}
-
-export default function PostCard({ data }: PostCardProps) {
-  const date = useFormattedDate(data.createdAt);
+export default function Comment() {
   return (
     <div
       className="flex flex-col h-auto w-[400px] md:w-[600px] xl:w-[800px] h-[250px] my-[10px] rounded-[10px] py-[30px] px-[30px] bg-white"
