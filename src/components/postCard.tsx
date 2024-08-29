@@ -1,20 +1,43 @@
+import { useFormattedDate } from "@/hooks/useFormatDate";
+import { Post } from "@/types/type";
 import Image from "next/image";
 
-export default function PostCard() {
-    return (
-      <div className="flex flex-col w-[600px] h-[250px] my-[10px] rounded-[30px] py-[30px] px-[30px] bg-white"   style={{ boxShadow: '0px 4px 20px 0px rgba(0, 0, 0, 0.08)' }}>
-       <div className="flex items-center">
-       <Image
-        src="../assets/post-profile.svg"
-        alt="logo"
-        width={40}
-        height={30}
-        className="mr-[20px] cursor-pointer"
+interface PostCardProps {
+  data: Post;
+}
+
+export default function PostCard({ data }: PostCardProps) {
+  const date = useFormattedDate(data.createdAt);
+  return (
+    <div
+      className="flex flex-col w-[400px] md:w-[600px] xl:w-[800px] h-[250px] my-[10px] rounded-[10px] py-[30px] px-[30px] bg-white"
+      style={{ boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.08)" }}
+    >
+      <div className="flex items-center">
+        <Image
+          src="/assets/post-profile.svg"
+          alt="프로필 아이콘"
+          width={40}
+          height={30}
+          className="mr-[20px] cursor-pointer"
         />
-       <p className="font-semibold text-[20px]">곽서연</p>
-        </div> 
-        <p className="mt-[15px] text-[15px]">포스팅 작성 내용 ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
+        <p className="font-semibold text-[20px]">{data.title}</p>
       </div>
-    );
-  }
-  
+      <p className="mt-[15px] text-[15px]  h-[100px]">{data.content}</p>
+      <p className="text-[13px] mb-[5px] text-gray-200">{date}</p>
+      <div className="flex justify-between items-center">
+        <p className="text-[15px] font-semibold">{data.author}</p>
+        <div className="flex items-center">
+          <Image
+            src="/assets/ic-heart.svg"
+            alt="댓글 아이콘"
+            width={30}
+            height={30}
+            className="mr-[5px] cursor-pointer"
+          />
+          <p className="text-[15px] font-semibold">{data.likes}</p>
+        </div>
+      </div>
+    </div>
+  );
+}

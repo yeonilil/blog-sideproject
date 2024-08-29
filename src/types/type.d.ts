@@ -51,3 +51,15 @@ export interface PostFormProps {
   content: string;
   categories: string[];
 }
+
+export interface Post {
+  id: string;
+  title: string;
+  content: string;
+  author: string;
+  categories: string[];
+  createdAt: string;
+  updatedAt: string;
+  likes: number;
+  isLikedByUser: boolean;
+}
