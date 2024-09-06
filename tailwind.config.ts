@@ -15,7 +15,7 @@ const config: Config = {
         // => @media (min-width: 1280px) { ... }
       },
       backgroundImage: {
-        'custom-gradient': 'linear-gradient(-20deg, #D2D2FF 0%, #AAB9FF	100%)',
+        "custom-gradient": "linear-gradient(-20deg, #D2D2FF 0%, #AAB9FF	100%)",
       },
       fontFamily: {
         pretendard: ["Pretendard", "sans-serif"],
@@ -52,18 +52,16 @@ const config: Config = {
           950: "#1A212D",
         },
         bg: {
-          100: "#f4f4f4",
+          100: "#f6f6f8",
           200: "a6c1ee", //보라색 포인트 색상
         },
         state: {
           error: "#FF6577",
         },
+      },
     },
+    plugins: [],
   },
-  plugins: [
-    
-  ],
-}};
+};
 
 export default config;
-

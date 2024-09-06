@@ -70,7 +70,7 @@ export default function PostPage() {
   return (
     <>
       <Header />
-      <div className="h-full bg-custom-gradient flex flex-col items-center pt-[100px]">
+      <div className="h-full bg-bg-100 flex flex-col items-center pt-[100px]">
         <div className="h-screen bg-custom-gradient">
           <div className="flex justify-end gap-[10px] text-[13px] text-white">
             <button onClick={handleEdit}>수정</button>

@@ -30,8 +30,8 @@ export default function Mypage() {
     <>
       <Wrapper>
         <Header />
-        <div className="h-full bg-custom-gradient flex flex-col items-center pt-[100px]">
-          <div className="h-screen bg-custom-gradient">
+        <div className="h-full bg-bg-100 flex flex-col items-center pt-[100px]">
+          <div className="h-screen bg-bg-100">
             {profile && (
               <div className="profile">
                 <h2>PROFILE</h2>

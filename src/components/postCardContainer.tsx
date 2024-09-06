@@ -20,12 +20,12 @@ export default function PostCardContainer() {
   };
   useEffect(() => {
     fetchPosts();
-  });
+  }, []);
   return (
     <div>
-      <div className="mt-[100px]">
+      <div className="mt-[30px] h-screen">
         <div className="flex justify-between">
-          <p className="text-bold text-white text-[20px]">ALL</p>
+          <p className="text-bold text-[16px] ">ALL</p>
         </div>
         {posts.map((post) => (
           <Link key={post.id} href={`/${post.id}`}>

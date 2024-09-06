@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import ProfileDropdown from "./profileDropdown";
 
 export default function Header() {
   return (
-    <div className="fixed w-full h-[100px] flex justify-between items-center font-semibold text-white">
+    <div className="fixed z-[999] w-full h-[70px] flex justify-between items-center font-semibold text-white bg-black-700">
       <div className="flex items-center">
         <Image
           src="../assets/logo.svg"
