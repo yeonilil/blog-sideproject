@@ -3,6 +3,8 @@ import { getUserProfile } from "./api/users";
 import { UserProfile } from "@/types/type";
 import Header from "@/components/header";
 import Wrapper from "@/components/animation";
+import Banner from "@/components/banner";
+import PostCardContainer from "@/components/postCardContainer";
 
 export default function Mypage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -29,17 +31,11 @@ export default function Mypage() {
   return (
     <>
       <Wrapper>
-        <Header />
-        <div className="h-full bg-bg-100 flex flex-col items-center pt-[100px]">
-          <div className="h-screen bg-bg-100">
-            {profile && (
-              <div className="profile">
-                <h2>PROFILE</h2>
-                <p>닉네임: {profile.username}</p>
-                <p>소개: {profile.email}</p>
-                {/* 필요한 다른 프로필 정보들 추가 */}
-              </div>
-            )}
+        <div className="h-full">
+          <div className="h-full flex flex-col items-center font-Pretendard h-full bg-bg-100">
+            <Header />
+            <Banner />
+            <PostCardContainer />
           </div>
         </div>
       </Wrapper>

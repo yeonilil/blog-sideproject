@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ProfileDropdown from "./ProfileDropdown";
 
 export default function Header() {
   return (
@@ -26,6 +27,7 @@ export default function Header() {
         <Link href="/signup">
           <p className="mr-[20px]  hover:text-bg-200 cursor-pointer">Signup</p>
         </Link>
+        <ProfileDropdown />
       </div>
     </div>
   );

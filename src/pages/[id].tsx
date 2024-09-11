@@ -71,8 +71,8 @@ export default function PostPage() {
     <>
       <Header />
       <div className="h-full bg-bg-100 flex flex-col items-center pt-[100px]">
-        <div className="h-screen bg-custom-gradient">
-          <div className="flex justify-end gap-[10px] text-[13px] text-white">
+        <div className="h-screen bg-bg-100">
+          <div className="flex justify-end gap-[10px] text-[13px] ">
             <button onClick={handleEdit}>수정</button>
             <button onClick={handleDelete}>삭제</button>
           </div>

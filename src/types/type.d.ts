@@ -36,15 +36,9 @@ export interface LoginFormProps {
 }
 
 export interface UserProfile {
-  username: string;
-  email: string;
+  nickname: string;
+  bio: string;
 }
-
-export interface UserProfile {
-  username: string;
-  email: string;
-}
-
 //포스트 타입
 export interface PostFormProps {
   title: string;

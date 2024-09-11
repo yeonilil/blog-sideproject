@@ -1,6 +1,6 @@
+import { postComments } from "@/pages/api/comments";
 import { useState } from "react";
 import { toast } from "react-toastify";
-// import { postRequest } from "./api"; // 실제 파일 경로에 맞게 수정하세요
 
 export default function CommentContainer({ postId }: { postId: string }) {
   const [comment, setComment] = useState("");
@@ -12,9 +12,14 @@ export default function CommentContainer({ postId }: { postId: string }) {
       toast.error("댓글을 입력하세요.");
       return;
     }
+    // 댓글이 120자를 초과하는지 확인
+    if (comment.length > 120) {
+      toast.error("댓글은 120자 이하로 입력해주세요.");
+      return;
+    }
 
     try {
-      //   await postRequest(`/comments/${postId}`, { content: comment });
+      await postComments(postId, comment);
       toast.success("댓글이 성공적으로 작성되었습니다.");
       setComment(""); // 댓글 입력란 초기화
     } catch (error) {
@@ -31,6 +36,7 @@ export default function CommentContainer({ postId }: { postId: string }) {
           <input
             type="text"
             value={comment}
+            maxLength={120}
             onChange={(e) => setComment(e.target.value)}
             placeholder="댓글을 입력하세요"
             className="w-full p-5 rounded-md h-[50px] mr-[10px]"
