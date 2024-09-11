@@ -57,3 +57,8 @@ export interface Post {
   likes: number;
   isLikedByUser: boolean;
 }
+
+export interface Category {
+  _id: string;
+  name: string;
+}

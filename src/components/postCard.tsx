@@ -8,6 +8,7 @@ interface PostCardProps {
 
 export default function PostCard({ data }: PostCardProps) {
   const date = useFormattedDate(data.createdAt);
+
   return (
     <div>
       <div className="flex flex-col h-[250px] w-[400px] md:w-[600px] xl:w-[700px] my-[10px] rounded-[20px] py-[30px] px-[30px] bg-white overflow-hidden">

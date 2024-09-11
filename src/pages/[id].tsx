@@ -1,17 +1,19 @@
 import { useRouter } from "next/router";
 import { getPostById, likePost, deletePost, patchPost } from "./api/posts";
 import { useEffect, useState } from "react";
-import { Post } from "@/types/type";
+import { Category, Post } from "@/types/type";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import Header from "@/components/header";
 import CommentContainer from "@/components/commentContainer";
+import { getCategories } from "./api/categories";
 
 export default function PostPage() {
   const router = useRouter();
   const { id } = router.query;
   const [post, setPost] = useState<Post | null>(null);
   const [liked, setLiked] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const fetchPost = async (postId: string) => {
     try {
@@ -21,6 +23,16 @@ export default function PostPage() {
     } catch (error) {
       toast.error("포스트를 불러오는 데 실패했습니다");
       console.error("포스트를 불러오는 데 실패했습니다", error);
+    }
+  };
+
+  const fetchCategory = async () => {
+    try {
+      const categoryData = await getCategories();
+      setCategories(categoryData);
+    } catch (error) {
+      toast.error("카테고리를 불러오는 데 실패했습니다");
+      console.error("카테고리를 불러오는 데 실패했습니다", error);
     }
   };
 
@@ -60,6 +72,9 @@ export default function PostPage() {
   useEffect(() => {
     if (id && typeof id === "string") {
       fetchPost(id);
+      fetchCategory();
+      console.log(categories);
+      console.log(post);
     }
   }, [id]);
 
@@ -80,6 +95,16 @@ export default function PostPage() {
             className="flex flex-col h-auto w-[400px] md:w-[600px] xl:w-[800px] h-[250px] my-[10px] rounded-[10px] py-[30px] px-[30px] bg-white"
             style={{ boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.08)" }}
           >
+            <div className="flex gap-[4px] mb-[10px]">
+              {categories.map((category: Category, index: number) => (
+                <p
+                  key={index}
+                  className="w-fit text-[13px] text-gray-400 inline-block transform rounded-[8px] bg-blue-200 px-[8px] py-[4px] transition hover:scale-105"
+                >
+                  {category.name}
+                </p>
+              ))}
+            </div>
             <p className="font-semibold text-[20px]">{post.title}</p>
             <p className="mt-[30px] text-[15px] h-[180px] overflow-hidden">
               {post.content}
