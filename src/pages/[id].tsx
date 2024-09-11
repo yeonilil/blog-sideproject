@@ -7,6 +7,7 @@ import Image from "next/image";
 import Header from "@/components/header";
 import CommentContainer from "@/components/commentContainer";
 import { getCategories } from "./api/categories";
+import Link from "next/link";
 
 export default function PostPage() {
   const router = useRouter();
@@ -50,10 +51,6 @@ export default function PostPage() {
     }
   };
 
-  const handleEdit = async () => {
-    //추가 필요
-  };
-
   const handleDelete = async () => {
     if (!id || typeof id !== "string") return;
 
@@ -88,7 +85,9 @@ export default function PostPage() {
       <div className="h-full bg-bg-100 flex flex-col items-center pt-[100px]">
         <div className="h-screen bg-bg-100">
           <div className="flex justify-end gap-[10px] text-[13px] ">
-            <button onClick={handleEdit}>수정</button>
+            <Link href={`/edit?id=${id}`}>
+              <button>수정</button>
+            </Link>
             <button onClick={handleDelete}>삭제</button>
           </div>
           <div
@@ -96,12 +95,12 @@ export default function PostPage() {
             style={{ boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.08)" }}
           >
             <div className="flex gap-[4px] mb-[10px]">
-              {categories.map((category: Category, index: number) => (
+              {post.categories.map((category: string, index: number) => (
                 <p
                   key={index}
                   className="w-fit text-[13px] text-gray-400 inline-block transform rounded-[8px] bg-blue-200 px-[8px] py-[4px] transition hover:scale-105"
                 >
-                  {category.name}
+                  {category}
                 </p>
               ))}
             </div>

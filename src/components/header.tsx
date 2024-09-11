@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import ProfileDropdown from "./ProfileDropdown";
+import ProfileDropdown from "./profileDropdown";
 
 export default function Header() {
   return (
